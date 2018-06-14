@@ -5,8 +5,6 @@ VisualStudioVersion = 15.0.27428.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jujube_linebot", "jujube_linebot\jujube_linebot.csproj", "{37E55F37-DC58-4755-860B-454EA1D4BDDF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OSLibrary", "..\MVC_B2CStore\OSLibrary\OSLibrary.csproj", "{182F06B1-710F-45FC-978F-544506C0F002}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{37E55F37-DC58-4755-860B-454EA1D4BDDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37E55F37-DC58-4755-860B-454EA1D4BDDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37E55F37-DC58-4755-860B-454EA1D4BDDF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{182F06B1-710F-45FC-978F-544506C0F002}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{182F06B1-710F-45FC-978F-544506C0F002}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{182F06B1-710F-45FC-978F-544506C0F002}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{182F06B1-710F-45FC-978F-544506C0F002}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
