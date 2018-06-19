@@ -43,7 +43,6 @@ namespace jujube_bossonly.Controllers
                             //建立actions, 作為ButtonTemplate的用戶回覆行為
                             var actions = new List<isRock.LineBot.TemplateActionBase>();
                             actions.Add(new isRock.LineBot.MessageAction() { label = "年", text = "年" });
-                            actions.Add(new isRock.LineBot.MessageAction() { label = "季", text = "季" });
                             actions.Add(new isRock.LineBot.MessageAction() { label = "月", text = "月" });
                             actions.Add(new isRock.LineBot.MessageAction() { label = "日", text = "日" });
                             var ButtonTempalteMsg = new isRock.LineBot.ButtonsTemplate()
@@ -61,28 +60,21 @@ namespace jujube_bossonly.Controllers
                             DateTime from = new DateTime(2018, 1, 1);
                             DateTime to = new DateTime(2018, 12, 31);
                             var year = repository.GetByOrder_Date(from, to);
-                            this.ReplyMessage(LineEvent.replyToken, year.Sum(x => x.Total).ToString().ToLower() + "元");
-                        }
-                        if (LineEvent.message.text.ToLower() == "季")
-                        {
-                            DateTime from = new DateTime(2018, 1, 1);
-                            DateTime to = new DateTime(2018, 12, 31);
-                            var year = repository.GetByOrder_Date(from, to);
-                            this.ReplyMessage(LineEvent.replyToken, year.Sum(x => x.Total).ToString() + "元");
+                            this.ReplyMessage(LineEvent.replyToken, year.Sum(x => x.Total) + "元");
                         }
                         if (LineEvent.message.text.ToLower() == "月")
                         {
                             DateTime from = new DateTime(2018, 6, 1);
-                            DateTime to = new DateTime(2018, 6, 31);
+                            DateTime to = new DateTime(2018, 6, 30);
                             var year = repository.GetByOrder_Date(from, to);
-                            this.ReplyMessage(LineEvent.replyToken, year.Sum(x => x.Total).ToString() + "元");
+                            this.ReplyMessage(LineEvent.replyToken, year.Sum(x => x.Total) + "元");
                         }
                         if (LineEvent.message.text.ToLower() == "日")
                         {
                             DateTime from = new DateTime(2018, 6, 19, 0, 0, 0);
                             DateTime to = new DateTime(2018, 6, 19, 23, 59, 59);
                             var year = repository.GetByOrder_Date(from, to);
-                            this.ReplyMessage(LineEvent.replyToken, year.Sum(x => x.Total).ToString() + "元");
+                            this.ReplyMessage(LineEvent.replyToken, year.Sum(x => x.Total) + "元");
                         }
                         if (LineEvent.message.text.ToLower() == "商品")
                         {
