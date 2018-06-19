@@ -35,7 +35,6 @@ namespace StudyHostExampleLinebot.Controllers
                     this.ReplyMessage(LineEvent.replyToken, $"{Userinfo.displayName} 您好,\n謝謝您加我為好友!! 我可以回覆您任何問題!!");
                 if (LineEvent.type == "message")
                 {
-                    var repmsg = "";
                     if (LineEvent.message.type == "text") //收到文字
                     {
                         //建立 MsQnAMaker Client
