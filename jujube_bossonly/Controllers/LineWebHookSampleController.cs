@@ -139,9 +139,9 @@ namespace jujube_bossonly.Controllers
                         {
                             //建立actions, 作為ButtonTemplate的用戶回覆行為
                             var actions = new List<isRock.LineBot.TemplateActionBase>();
-                            actions.Add(new isRock.LineBot.MessageAction() { label = "5項", text = "5項" });
-                            actions.Add(new isRock.LineBot.MessageAction() { label = "10項", text = "10項" });
-                            actions.Add(new isRock.LineBot.MessageAction() { label = "15項", text = "15項" });
+                            actions.Add(new isRock.LineBot.MessageAction() { label = "5項", text = "5" });
+                            actions.Add(new isRock.LineBot.MessageAction() { label = "10項", text = "10" });
+                            actions.Add(new isRock.LineBot.MessageAction() { label = "15項", text = "15" });
                             var ButtonTempalteMsg = new isRock.LineBot.ButtonsTemplate()
                             {
                                 title = "請選擇",
@@ -152,6 +152,30 @@ namespace jujube_bossonly.Controllers
                             };
                             this.ReplyMessage(LineEvent.replyToken, ButtonTempalteMsg);
                         }
+                        //   if (LineEvent.message.text == "5" || LineEvent.message.text == "10" || LineEvent.message.text == "15")
+                        int s;
+                        if (int.TryParse(LineEvent.message.text, out s))
+                        {
+                            // var s = int.Parse(LineEvent.message.text);
+                            var product = repository.GetStock(s);
+                            var a1 = "";
+                            foreach (var i in product)
+                            {
+
+                                a1 += $"商品編號 : {i.Product_ID}  商品名稱 :  {i.Product_Name} 尺寸 : {i.Size}  顏色 : {i.Color} 數量 : {i.Quantity}  , \n";
+
+
+                            }
+                            try
+                            {
+                                this.ReplyMessage(LineEvent.replyToken, $"商品庫存  :  \n {a1}");
+                            }
+                            catch
+                            {
+                                this.ReplyMessage(LineEvent.replyToken, $"商品庫存  :  只能在0~15內");
+                            }
+                        }
+
 
                     }
                     if (LineEvent.message.type == "sticker")
