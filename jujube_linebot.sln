@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jujube_linebot", "jujube_li
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OSLibrary", "..\MVC_B2CStore\OSLibrary\OSLibrary.csproj", "{182F06B1-710F-45FC-978F-544506C0F002}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jujube_bossonly", "jujube_bossonly\jujube_bossonly.csproj", "{0FCE9F45-5B9F-459E-A0AC-63E90C4AF5C0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{182F06B1-710F-45FC-978F-544506C0F002}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{182F06B1-710F-45FC-978F-544506C0F002}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{182F06B1-710F-45FC-978F-544506C0F002}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FCE9F45-5B9F-459E-A0AC-63E90C4AF5C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FCE9F45-5B9F-459E-A0AC-63E90C4AF5C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FCE9F45-5B9F-459E-A0AC-63E90C4AF5C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FCE9F45-5B9F-459E-A0AC-63E90C4AF5C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
