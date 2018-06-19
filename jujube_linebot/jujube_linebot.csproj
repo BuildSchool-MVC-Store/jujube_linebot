@@ -108,7 +108,9 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\jujube-linebot - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\jujube-linebot - FTP1.pubxml" />
     <None Include="Properties\PublishProfiles\jujube-linebot - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\jujube-linebot - Web Deploy1.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -119,6 +121,12 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\MVC_B2CStore\OSLibrary\OSLibrary.csproj">
+      <Project>{182f06b1-710f-45fc-978f-544506c0f002}</Project>
+      <Name>OSLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -131,7 +139,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>58962</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

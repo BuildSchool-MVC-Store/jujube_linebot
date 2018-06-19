@@ -1,3 +1,5 @@
+using OSLibrary.ADO.NET.Repositories;
+using OSLibrary.Sevices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +11,11 @@ namespace jujube_linebot.Controllers
 {
     public class TestLUISController : isRock.LineBot.LineWebHookControllerBase
     {
-        const string channelAccessToken = "~~~請改成自己的ChannelAccessToken~~~";
-        const string AdminUserId = "~~~改成你的AdminUserId~~~";
-        const string LuisAppId = "~~~改成你的LuisAppId~~~";
-        const string LuisAppKey = "~~~改成你的LuisAppKey~~~";
-        const string Luisdomain = "~~~改成你的Luisdomain~~~"; //ex.westus
+        const string channelAccessToken = "OBSqJrJv637VJ2mEAyheqT/WmiJzfb9PVG7PXeJc8C1TOWv5TjAiRt3lFmpUa9gfN+q9sj9RV1whB1hNOdj3UdPfNyHQXSx7QB3kFAQNR4UXRjahIla5rOMQPn/vigc713nWd2oSs9KMs9GaoqtQugdB04t89/1O/w1cDnyilFU=";
+        const string AdminUserId = "U275c68b802e11bb599413ef87dcea051";
+        const string LuisAppId = "827960e6-5891-4075-a5a6-5dce2763c33a";
+        const string LuisAppKey = "8a5157b1c0df4c3691921bbdf2a03f81";
+        const string Luisdomain = "westus"; //ex.westus
 
         [Route("api/TestLUIS")]
         [HttpPost]
@@ -28,6 +30,8 @@ namespace jujube_linebot.Controllers
                 //配合Line verify 
                 if (LineEvent.replyToken == "00000000000000000000000000000000") return Ok();
                 //回覆訊息
+                var stockService = new StockService();
+                var stockrepository = new StockRepository();
                 if (LineEvent.type == "message")
                 {
                     var repmsg = "";
@@ -45,6 +49,11 @@ namespace jujube_linebot.Controllers
                             repmsg = $"你說了 '{LineEvent.message.text}' ，但不在我的服務範圍內喔!";
                         else
                         {
+                            if (ret.TopScoringIntent.Name == "商品查詢")
+                            {
+                                var stockdetails = stockService.GetByProductName(ret.Entities.FirstOrDefault().Value.FirstOrDefault().Value);
+                                repmsg = $"您詢問的商品是{ret.Entities.FirstOrDefault().Value.FirstOrDefault().Value}，顏色有{stockdetails}";
+                            }
                             repmsg = $"OK，你想 '{ret.TopScoringIntent.Name}'，";
                             if (ret.Entities.Count > 0)
                                 repmsg += $"想要的是 '{ ret.Entities.FirstOrDefault().Value.FirstOrDefault().Value}' ";

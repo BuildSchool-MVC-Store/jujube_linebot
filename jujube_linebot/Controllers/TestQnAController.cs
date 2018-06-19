@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
+
 namespace StudyHostExampleLinebot.Controllers
 {
     public class TestQnAController : isRock.LineBot.LineWebHookControllerBase
@@ -49,6 +50,7 @@ namespace StudyHostExampleLinebot.Controllers
                         var responseText = UnknowAnswer;
                         if (ret.FirstOrDefault().score > 0)
                             responseText = ret.FirstOrDefault().answer;
+                            
                         //回覆
                         this.ReplyMessage(LineEvent.replyToken, responseText);
                     }
