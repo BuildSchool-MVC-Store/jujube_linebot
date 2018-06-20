@@ -100,40 +100,43 @@ namespace jujube_bossonly.Controllers
                             };
                             this.ReplyMessage(LineEvent.replyToken, ConfirmTemplate);
                         }
-                        if (LineEvent.message.text == "最熱銷")
+                        if (LineEvent.message.text == "最熱銷" || LineEvent.message.text == "最滯銷")
                         {
-                            var product = repository.GetProductTop1();
                             var a3 = "";
-                            var a9 = product.Max(x => x.count);
+                            var b = "";
+                            var c = "";
+                        //    var product = repository.GetProductTop9();
+                            int a9;
+                            if (LineEvent.message.text == "最熱銷")
+                            {
+                                b = "最熱銷";
+                                c = "DESC";
+                            }
+                            else
+                            {
+                                b = "最滯銷";
+                                c = "ASC";
+                               
+                            }
+                            var product = repository.GetProductTop9(c);
+                            if (LineEvent.message.text == "最熱銷")
+                            {
+                                a9 = product.Max(x => x.count);
+                            }
+                            else
+                            {
+                                a9 = product.Min(x => x.count);
+                            }
+
                             foreach (var i in product)
                             {
                                 if (i.count == a9)
-                                {
-                                    // a1 = i.count.ToString();
-                                    // a2 = i.Product_ID.ToString();
+                                { 
                                     a3 += i.Product_Name.ToString() + " \n";
                                 }
                             }
 
-                            this.ReplyMessage(LineEvent.replyToken, $"最熱銷  :  \n{a3}");
-                        }
-                        if (LineEvent.message.text == "最滯銷")
-                        {
-                            var product = repository.GetProductbad();
-                            var a3 = "";
-                            var a9 = product.Min(x => x.count);
-                            foreach (var i in product)
-                            {
-                                if (i.count == a9)
-                                {
-                                    // a1 = i.count.ToString();
-                                    // a2 = i.Product_ID.ToString();
-                                    a3 += i.Product_Name.ToString() + " \n";
-                                }
-
-                            }
-
-                            this.ReplyMessage(LineEvent.replyToken, $"最滯銷  :  \n{a3}");
+                            this.ReplyMessage(LineEvent.replyToken, $"{b}  :  \n{a3}");
                         }
                         if (LineEvent.message.text == "庫存少於的商品有哪些")
                         {
@@ -165,7 +168,7 @@ namespace jujube_bossonly.Controllers
                             }
                             try
                             {
-                                this.ReplyMessage(LineEvent.replyToken, $"商品庫存  :  \n {a1}");
+                                this.ReplyMessage(LineEvent.replyToken, $"商品庫存  :  \n{a1}");
                             }
                             catch
                             {
