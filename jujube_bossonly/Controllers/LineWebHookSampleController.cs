@@ -65,10 +65,10 @@ namespace jujube_bossonly.Controllers
                             var year = repository.GetByOrder_Date(from, to);
                             this.ReplyMessage(LineEvent.replyToken, year.Sum(x => x.Total).ToString().ToLower() + "元");
                         }
-                        if (LineEvent.message.text.ToLower() == "季")
+                        if (LineEvent.message.text.ToLower() == "半年")
                         {
                             DateTime from = new DateTime(2018, 1, 1);
-                            DateTime to = new DateTime(2018, 12, 31);
+                            DateTime to = new DateTime(2018, 7, 1);
                             var year = repository.GetByOrder_Date(from, to);
                             this.ReplyMessage(LineEvent.replyToken, year.Sum(x => x.Total).ToString() + "元");
                         }
@@ -81,8 +81,8 @@ namespace jujube_bossonly.Controllers
                         }
                         if (LineEvent.message.text.ToLower() == "日")
                         {
-                            DateTime from = new DateTime(2018, 6, 19, 0, 0, 0);
-                            DateTime to = new DateTime(2018, 6, 19, 23, 59, 59);
+                            DateTime from = new DateTime(2018, 6, 20, 0, 0, 0);
+                            DateTime to = new DateTime(2018, 6, 20, 23, 59, 59);
                             var year = repository.GetByOrder_Date(from, to);
                             this.ReplyMessage(LineEvent.replyToken, year.Sum(x => x.Total).ToString() + "元");
                         }
@@ -115,7 +115,7 @@ namespace jujube_bossonly.Controllers
                                 }
                             }
 
-                            this.ReplyMessage(LineEvent.replyToken, $"最熱銷  :  \n {a3}");
+                            this.ReplyMessage(LineEvent.replyToken, $"最熱銷  :  \n{a3}");
                         }
                         if (LineEvent.message.text == "最滯銷")
                         {
@@ -133,7 +133,7 @@ namespace jujube_bossonly.Controllers
 
                             }
 
-                            this.ReplyMessage(LineEvent.replyToken, $"最滯銷  :  \n {a3}");
+                            this.ReplyMessage(LineEvent.replyToken, $"最滯銷  :  \n{a3}");
                         }
                         if (LineEvent.message.text == "庫存少於的商品有哪些")
                         {
@@ -161,10 +161,7 @@ namespace jujube_bossonly.Controllers
                             var a1 = "";
                             foreach (var i in product)
                             {
-
                                 a1 += $"商品編號 : {i.Product_ID}  商品名稱 :  {i.Product_Name} 尺寸 : {i.Size}  顏色 : {i.Color} 數量 : {i.Quantity}  , \n";
-
-
                             }
                             try
                             {
@@ -175,8 +172,6 @@ namespace jujube_bossonly.Controllers
                                 this.ReplyMessage(LineEvent.replyToken, $"商品庫存  :  只能在0~15內");
                             }
                         }
-
-
                     }
                     if (LineEvent.message.type == "sticker")
                     {
