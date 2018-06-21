@@ -10,10 +10,10 @@ namespace StudyHostExampleLinebot.Controllers
 {
     public class TestQnAController : isRock.LineBot.LineWebHookControllerBase
     {
-        const string channelAccessToken = "OBSqJrJv637VJ2mEAyheqT/WmiJzfb9PVG7PXeJc8C1TOWv5TjAiRt3lFmpUa9gfN+q9sj9RV1whB1hNOdj3UdPfNyHQXSx7QB3kFAQNR4UXRjahIla5rOMQPn/vigc713nWd2oSs9KMs9GaoqtQugdB04t89/1O/w1cDnyilFU=";
-        const string AdminUserId = "U275c68b802e11bb599413ef87dcea051";
-        const string QnAKey = "177149db-d05a-419e-a905-9fbddba9053d";
-        const string Endpoint = "https://jujube2018.azurewebsites.net/qnamaker/knowledgebases/0b6fec5d-c0b2-4f9d-9081-d6f6b7543bbd/generateAnswer"; //ex.westus
+        const string channelAccessToken = "改成你自己的token";
+        const string AdminUserId = "改成你自己的userid";
+        const string QnAKey = "改成你自己的key";
+        const string Endpoint = "..."; //ex.westus
         const string UnknowAnswer = "不好意思，您可以換個方式問嗎? 我不太明白您的意思...";
 
         [Route("api/TestQnA")]
