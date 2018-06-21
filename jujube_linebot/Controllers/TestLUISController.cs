@@ -13,8 +13,8 @@ namespace jujube_linebot.Controllers
     {
         const string channelAccessToken = "OBSqJrJv637VJ2mEAyheqT/WmiJzfb9PVG7PXeJc8C1TOWv5TjAiRt3lFmpUa9gfN+q9sj9RV1whB1hNOdj3UdPfNyHQXSx7QB3kFAQNR4UXRjahIla5rOMQPn/vigc713nWd2oSs9KMs9GaoqtQugdB04t89/1O/w1cDnyilFU=";
         const string AdminUserId = "U275c68b802e11bb599413ef87dcea051";
-        const string LuisAppId = "827960e6-5891-4075-a5a6-5dce2763c33a";
-        const string LuisAppKey = "8a5157b1c0df4c3691921bbdf2a03f81";
+        const string LuisAppId = "6d920831-0f35-4fc6-98da-489c9085697b";
+        const string LuisAppKey = "8c5db4d4a17b4d25a99ee6502ada350f";
         const string Luisdomain = "westus"; //ex.westus
 
         [Route("api/TestLUIS")]
@@ -34,7 +34,7 @@ namespace jujube_linebot.Controllers
                 string Lineid = ReceivedMessage.events.FirstOrDefault().source.userId;
                 var Userinfo = bot.GetUserInfo(Lineid);
                 if (LineEvent.type == "follow")
-                    this.ReplyMessage(LineEvent.replyToken, $"{Userinfo.displayName} 您好,\n謝謝您加我為好友!! 我可以回覆您任何問題!!");
+                    this.ReplyMessage(LineEvent.replyToken, $"{Userinfo.displayName} 您好,\n謝謝您加我為好友!! 我可以回覆您任何問題!!\n下方'MORE'選單提供您更便利的購物流程!!");
                 if (LineEvent.type == "message")
                 {
                     var repmsg = "";
@@ -126,11 +126,17 @@ namespace jujube_linebot.Controllers
                             {
                                 foreach(var item in ret.Entities)
                                 {
-                                    if(item.Value.FirstOrDefault().Value == "")
+                                    if (item.Value.FirstOrDefault().Value == "嫌棄")
+                                        repmsg = $"不好意思，如果您不滿意的話，在七天鑑賞期之內都有提供退貨服務。謝謝您。";
+                                    if (item.Value.FirstOrDefault().Value == "貨品延遲")
+                                        repmsg = $"不好意思，讓您等那麼久才收到商品，我們會向運輸公司反應。";
+                                    if (item.Value.FirstOrDefault().Value == "純客訴")
+                                        repmsg = $"不好意思，要麻煩您於周一 ~ 周五 09:00 ~ 18:00 撥打客服專線 03-512-3456，或是寄 email 到 jujube2018@gmail.com，將會有專人為您服務，謝謝您。";
+                                        
                                 }
 
                                 //發送
-                                this.ReplyMessage(LineEvent.replyToken, CarouselTemplateMessage);
+                                this.ReplyMessage(LineEvent.replyToken, repmsg);
                             }
                             //repmsg = $"OK，你想 '{ret.TopScoringIntent.Name}'，";
                             //if (ret.Entities.Count > 0)
