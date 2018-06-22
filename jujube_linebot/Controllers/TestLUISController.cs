@@ -49,7 +49,11 @@ namespace jujube_linebot.Controllers
                         if (ret.Intents.Count() <= 0)
                             repmsg = $"你說了 '{LineEvent.message.text}' ，但我看不懂喔!";
                         else if (ret.TopScoringIntent.Name == "None")
+                        {
                             repmsg = $"你說了 '{LineEvent.message.text}' ，但不在我的服務範圍內喔! 期待您下次提問!!";
+                            this.ReplyMessage(LineEvent.replyToken, repmsg);
+                        }
+
                         else
                         {
                             if (ret.TopScoringIntent.Name == "會員問題")
@@ -111,9 +115,13 @@ namespace jujube_linebot.Controllers
                                     if (item.Value.FirstOrDefault().Name == "內褲")
                                         repmsg = $"不好意思，內褲還沒開賣，敬請期待，謝謝您 :)";
                                     if (item.Value.FirstOrDefault().Name == "特價")
-                                        repmsg = $"官網上顯示折扣的都是特價商品唷!!";
+                                        repmsg = $"官網上顯示折扣的都是特價商品喲!!";
                                     if (item.Value.FirstOrDefault().Name == "新品")
                                         repmsg = $"我們官網顯示在最上面的商品都是新貨唷!!";
+                                    if (item.Value.FirstOrDefault().Name == "其他商品")
+                                        repmsg = $"不好意思，我們目前沒有提供此項商品喲!!";
+                                    if (item.Value.FirstOrDefault().Name == "未知品牌")
+                                        repmsg = $"您好，我們目前沒有與其他品牌聯名，期待未來可以與他們合作，謝謝您的建議!!";
                                 }
                                 this.ReplyMessage(LineEvent.replyToken, repmsg);
                             }
@@ -164,13 +172,7 @@ namespace jujube_linebot.Controllers
                                 //發送
                                 this.ReplyMessage(LineEvent.replyToken, repmsg);
                             }
-                            //repmsg = $"OK，你想 '{ret.TopScoringIntent.Name}'，";
-                            //if (ret.Entities.Count > 0)
-                            //    repmsg += $"想要的是 '{ ret.Entities.FirstOrDefault().Value.FirstOrDefault().Value}' ";
-
                         }
-
-                        this.ReplyMessage(LineEvent.replyToken, repmsg);
                     }
                     if (LineEvent.message.type == "sticker") //收到貼圖
                         this.ReplyMessage(LineEvent.replyToken, 1, 2);
