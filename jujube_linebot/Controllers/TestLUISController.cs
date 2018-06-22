@@ -49,7 +49,7 @@ namespace jujube_linebot.Controllers
                         if (ret.Intents.Count() <= 0)
                             repmsg = $"你說了 '{LineEvent.message.text}' ，但我看不懂喔!";
                         else if (ret.TopScoringIntent.Name == "None")
-                            repmsg = $"你說了 '{LineEvent.message.text}' ，但不在我的服務範圍內喔!";
+                            repmsg = $"你說了 '{LineEvent.message.text}' ，但不在我的服務範圍內喔! 期待您下次提問!!";
                         else
                         {
                             if (ret.TopScoringIntent.Name == "會員問題")
@@ -164,16 +164,13 @@ namespace jujube_linebot.Controllers
                                 //發送
                                 this.ReplyMessage(LineEvent.replyToken, repmsg);
                             }
-
-                            if (ret.TopScoringIntent.Name == "None")
-                                repmsg = $"不好意思，客服無法回答您的問題。期待您下次的提問。";
                             //repmsg = $"OK，你想 '{ret.TopScoringIntent.Name}'，";
                             //if (ret.Entities.Count > 0)
                             //    repmsg += $"想要的是 '{ ret.Entities.FirstOrDefault().Value.FirstOrDefault().Value}' ";
 
                         }
 
-                        //this.ReplyMessage(LineEvent.replyToken, repmsg);
+                        this.ReplyMessage(LineEvent.replyToken, repmsg);
                     }
                     if (LineEvent.message.type == "sticker") //收到貼圖
                         this.ReplyMessage(LineEvent.replyToken, 1, 2);
